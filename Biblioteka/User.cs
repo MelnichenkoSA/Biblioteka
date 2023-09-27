@@ -8,7 +8,7 @@ namespace Biblioteka
 {
     internal class User
     {
-        public int Id = 0;
+        public int Id;
         public string Name;
         public string Family;
         public List<Book> Books;
@@ -17,7 +17,12 @@ namespace Biblioteka
         {
             this.Name = Name;
             this.Family = Family;
+            Id = 1;
         }
 
+        public void OtDie (Book book)
+        {
+            
+        }
     }
 }
