@@ -1,4 +1,4 @@
-Window x:Class="Biblioteka.MainWindow"
+<Window x:Class="Biblioteka.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,6 @@ Window x:Class="Biblioteka.MainWindow"
                 <StackPanel>
                     <Label Content="Поиск"/>
                     <TextBox/>
-                    <Button Content="Добавить" Background="#FFC7FF7B" />
                     <ListView>
                         <ListView.View>
                             <GridView>
@@ -23,6 +22,11 @@ Window x:Class="Biblioteka.MainWindow"
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Label Content="Имя:"/>
+                    <TextBox/>
+                    <Label Content="Фамилия:"/>
+                    <TextBox/>
+                    <Button Content="Добавить" Background="#FFC7FF7B" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Книги" Background="#FFCFFFFC">
@@ -31,7 +35,6 @@ Window x:Class="Biblioteka.MainWindow"
                     <TextBox/>
                     <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
                     <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
-                    <Button Content="Добавить" Background="#FFC7FF7B"/>
                     <ListView>
                         <ListView.View>
                             <GridView>
@@ -43,6 +46,13 @@ Window x:Class="Biblioteka.MainWindow"
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Label Content="Автор:"/>
+                    <TextBox/>
+                    <Label Content="Артикул:"/>
+                    <TextBox/>
+                    <Label Content="Количество:"/>
+                    <TextBox/>
+                    <Button Content="Добавить" Background="#FFC7FF7B"/>
                 </StackPanel>
             </TabItem>
         </TabControl>
