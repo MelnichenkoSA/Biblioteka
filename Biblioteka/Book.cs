@@ -9,25 +9,19 @@ namespace Biblioteka
 {
     internal class Book
     {
-        public string Author;
-        public short Acr;
-        public string[,] Data;
-        public int Count;
-        public int Counter;
+        public string Title { get; set; } // Название книги
+        public string Author { get; set; } // Автор книги
+        public short Acr { get; set; } // Год выпуска книги
+        public int Count { get; set; } // Количество экземпляров книги
+        public DateTime Age { get; set; }
+        public User IssuedTo { get; set; } // Пользователь, котором
 
-        public Book(string Author, short Acr, int Count) 
+        public Book(string title, string author, DateTime age, int count)
         {
-            this.Author = Author;
-            this.Acr = Acr;
-            this.Count = Count;
-            Data = new string[1,Count];
-            Counter = 0;
-        }
-
-        public void Die(User user)
-        {
-            Data[1, Counter] = Convert.ToString(user.Id);
-            Counter += 1;
+            Title = title;
+            Author = author;
+            Age = age;
+            Count = count;
         }
     }
 }
