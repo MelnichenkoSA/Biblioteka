@@ -13,16 +13,11 @@ namespace Biblioteka
         public string Family;
         public List<Book> Books;
 
-        public User(string Name, string Family)
+        public User(int id, string name, string family)
         {
-            this.Name = Name;
-            this.Family = Family;
-            Id = 1;
-        }
-
-        public void OtDie (Book book)
-        {
-            
+            Id = id;
+            Name = name;
+            Family = family;
         }
     }
 }
