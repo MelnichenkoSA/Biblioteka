@@ -24,19 +24,35 @@ namespace Biblioteka
         {
             InitializeComponent();
 
-            User newUser = new User(1, "Имя", "Фамилия");
-            libraryManager.AddUser(newUser);
-
-            Book newBook = new Book("Название книги", "Автор книги", new DateTime(2023, 1, 1), 5);
-            libraryManager.AddBook(newBook);
+            List<User> users = libraryManager.Users;
+            List<Book> books = libraryManager.Books;
         }
 
         private LibraryManager libraryManager = new LibraryManager();
 
+        
+        private void FindBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            string userId = userIdTextBox.Text;
+            User foundUser = libraryManager.FindUser(userId);
+        }
+
         private void FindUserButton_Click(object sender, RoutedEventArgs e)
         {
-            int userId = int.Parse(userIdTextBox.Text);
-            User foundUser = libraryManager.FindUser(userId);
+            userki.Items.Clear();
+
+            string searchText = (userIdTextBox.Text);
+
+            User foundUser = libraryManager.FindUser(searchText);
+
+            if (foundUser != null)
+            {
+                userki.Items.Add(foundUser);
+            }
+            else
+            {
+                MessageBox.Show("Пользователь не найден.");
+            }
         }
 
         private void IssueBookButton_Click(object sender, RoutedEventArgs e)
@@ -58,5 +74,60 @@ namespace Biblioteka
                 libraryManager.ReturnBook(selectedUser, returnedBook);
             }
         }
+
+        private void AddUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            string name = nameTextBox.Text;
+            string family = familyTextBox.Text;
+
+            User newUser = new User(GetNextUserId(), name, family);
+
+            libraryManager.AddUser(newUser);
+
+            RefreshUserListView();
+        }
+
+        private void AddBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            string author = authorTextBox.Text;
+            string title = titleTextBox.Text;
+            int count = int.Parse(countTextBox.Text);
+
+            Book newBook = new Book(title, author, count);
+
+            libraryManager.AddBook(newBook);
+
+            RefreshBookListView();
+
+        }
+
+        private void RefreshUserListView()
+        {
+            userki.Items.Clear();
+
+            foreach (User user in libraryManager.Users)
+            {
+                userki.Items.Add(user);
+            }
+
+        }
+
+        private void RefreshBookListView()
+        {
+            Booki.Items.Clear(); 
+
+            foreach (Book book in libraryManager.Books)
+            {
+                Booki.Items.Add(book);
+            }
+        }
+
+        private int nextUserId = 1; 
+
+        private int GetNextUserId()
+        {
+            return nextUserId++;
+        }
+
     }
 }

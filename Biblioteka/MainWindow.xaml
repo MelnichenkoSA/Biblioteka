@@ -17,36 +17,31 @@
                     <ListView Name="userki" Grid.Column="1">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
-                                <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
-                                <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Path=Family}"/>
-                                <GridViewColumn Header="Книги" DisplayMemberBinding="{Binding Path=Books}"/>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Family}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                     <StackPanel>
                         <Label Content="Поиск"/>
                         <TextBox Name="userIdTextBox"/>
+                        <Button Content="Найти" Click="FindUserButton_Click"/>
                         <Label Content="Имя:"/>
-                        <TextBox/>
+                        <TextBox Name="nameTextBox"/>
                         <Label Content="Фамилия:"/>
-                        <TextBox/>
-                        <Button Content="Добавить" Background="#FFC7FF7B" Click="Add"/>
+                        <TextBox Name="familyTextBox"/>
+                        <Button Content="Добавить" Background="#FFC7FF7B" Click="AddUserButton_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Книги" Background="#FFCFFFFC">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="36*"/>
-                        <ColumnDefinition Width="15*"/>
-                        <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="15*"/>
-                        <ColumnDefinition Width="41*"/>
-                        <ColumnDefinition Width="282*"/>
-                        <ColumnDefinition Width="397*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView Name="Booki"  Grid.Column="6">
+                    <ListView Name="Booki"  Grid.Column="1">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Path=Author}"/>
@@ -57,18 +52,20 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <StackPanel Grid.ColumnSpan="6">
+                    <StackPanel>
                         <Label Content="Поиск"/>
-                        <TextBox/>
+                        <TextBox Name="bookTitleTextBox"/>
+                        <Button Content="Найти" Click="FindBookButton_Click"/>
                         <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
                         <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
+                        <Label Content="Название:"/>
+                        <TextBox Name="titleTextBox"/>
                         <Label Content="Автор:"/>
-                        <TextBox/>
-                        <Label Content="Артикул:"/>
-                        <TextBox/>
+                        <TextBox Name="authorTextBox"/>
                         <Label Content="Количество:"/>
-                        <TextBox/>
-                        <Button Content="Добавить" Background="#FFC7FF7B"/>
+                        <TextBox Name="countTextBox"/>
+                        <Button Content="Добавить" Background="#FFC7FF7B" Click="AddBookButton_Click"/>
+                        <Button Content="Выдать" Click="IssueBookButton_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

@@ -8,9 +8,10 @@ namespace Biblioteka
 {
     internal class User
     {
-        public int Id;
-        public string Name;
-        public string Family;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
+
         public List<Book> Books;
 
         public User(int id, string name, string family)

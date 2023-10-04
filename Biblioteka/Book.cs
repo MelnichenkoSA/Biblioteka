@@ -16,11 +16,10 @@ namespace Biblioteka
         public DateTime Age { get; set; }
         public User IssuedTo { get; set; } // Пользователь, котором
 
-        public Book(string title, string author, DateTime age, int count)
+        public Book(string title, string author, int count)
         {
             Title = title;
             Author = author;
-            Age = age;
             Count = count;
         }
     }
