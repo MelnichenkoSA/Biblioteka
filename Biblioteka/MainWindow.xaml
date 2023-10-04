@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:Biblioteka"
         mc:Ignorable="d"
         Title="Bibliotheca Alexandrina" Height="450" Width="800" MinHeight="450" MinWidth="800">
-    <Grid>
+   <Grid>
         <TabControl Background="#FFCFFFFC">
             <TabItem Header="Пользователи" Background="#FFCFFFFC">
-                <StackPanel>
-                    <Label Content="Поиск"/>
-                    <TextBox/>
-                    <ListView>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView Name="userki" Grid.Column="1">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
@@ -22,20 +24,29 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Label Content="Имя:"/>
-                    <TextBox/>
-                    <Label Content="Фамилия:"/>
-                    <TextBox/>
-                    <Button Content="Добавить" Background="#FFC7FF7B" />
-                </StackPanel>
+                    <StackPanel>
+                        <Label Content="Поиск"/>
+                        <TextBox Name="userIdTextBox"/>
+                        <Label Content="Имя:"/>
+                        <TextBox/>
+                        <Label Content="Фамилия:"/>
+                        <TextBox/>
+                        <Button Content="Добавить" Background="#FFC7FF7B" Click="Add"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="Книги" Background="#FFCFFFFC">
-                <StackPanel>
-                    <Label Content="Поиск"/>
-                    <TextBox/>
-                    <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
-                    <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
-                    <ListView>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="282*"/>
+                        <ColumnDefinition Width="397*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView Name="Booki"  Grid.Column="6">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Path=Author}"/>
@@ -46,14 +57,20 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Label Content="Автор:"/>
-                    <TextBox/>
-                    <Label Content="Артикул:"/>
-                    <TextBox/>
-                    <Label Content="Количество:"/>
-                    <TextBox/>
-                    <Button Content="Добавить" Background="#FFC7FF7B"/>
-                </StackPanel>
+                    <StackPanel Grid.ColumnSpan="6">
+                        <Label Content="Поиск"/>
+                        <TextBox/>
+                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
+                        <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
+                        <Label Content="Автор:"/>
+                        <TextBox/>
+                        <Label Content="Артикул:"/>
+                        <TextBox/>
+                        <Label Content="Количество:"/>
+                        <TextBox/>
+                        <Button Content="Добавить" Background="#FFC7FF7B"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
