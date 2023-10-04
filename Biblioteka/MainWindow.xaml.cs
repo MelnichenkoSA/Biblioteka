@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,21 +21,25 @@ namespace Biblioteka
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<User> users;
+        List<Book> books;
+        LibraryManager libraryManager = new LibraryManager();
         public MainWindow()
         {
             InitializeComponent();
+            users = libraryManager.Users;
+            books = libraryManager.Books;
 
-            List<User> users = libraryManager.Users;
-            List<Book> books = libraryManager.Books;
-        }
+        }    
 
-        private LibraryManager libraryManager = new LibraryManager();
 
         
         private void FindBookButton_Click(object sender, RoutedEventArgs e)
         {
             string userId = userIdTextBox.Text;
-            User foundUser = libraryManager.FindUser(userId);
+            List<User> n = users.Where(q =>q.Id == Convert.ToInt32(userId)).ToList();
+            
+           // User foundUser = libraryManager.FindUser(userId);
         }
 
         private void FindUserButton_Click(object sender, RoutedEventArgs e)
