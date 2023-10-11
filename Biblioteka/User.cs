@@ -19,6 +19,7 @@ namespace Biblioteka
             Id = id;
             Name = name;
             Family = family;
+            Books= new List<Book>();
         }
     }
 }

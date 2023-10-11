@@ -30,16 +30,26 @@ namespace Biblioteka
             users = libraryManager.Users;
             books = libraryManager.Books;
 
-        }    
+        }
 
 
-        
+
         private void FindBookButton_Click(object sender, RoutedEventArgs e)
         {
-            string userId = userIdTextBox.Text;
-            List<User> n = users.Where(q =>q.Id == Convert.ToInt32(userId)).ToList();
-            
-           // User foundUser = libraryManager.FindUser(userId);
+            Booki.Items.Clear();
+
+            string searchText = (bookTitleTextBox.Text);
+
+            Book foundBook = libraryManager.FindBook(searchText);
+
+            if (foundBook != null)
+            {
+                Booki.Items.Add(foundBook);
+            }
+            else
+            {
+                MessageBox.Show("Книга не найдена.");
+            }
         }
 
         private void FindUserButton_Click(object sender, RoutedEventArgs e)
@@ -97,8 +107,9 @@ namespace Biblioteka
             string author = authorTextBox.Text;
             string title = titleTextBox.Text;
             int count = int.Parse(countTextBox.Text);
+            int Acr = int.Parse(arcTextBox.Text);
 
-            Book newBook = new Book(title, author, count);
+            Book newBook = new Book(title, author, count, Acr);
 
             libraryManager.AddBook(newBook);
 

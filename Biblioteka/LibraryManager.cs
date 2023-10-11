@@ -38,6 +38,7 @@ namespace Biblioteka
                 user.Books.Add(book);
                 book.IssuedTo = user;
                 book.Count--;
+                book.vydana= true;
             }
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka"
         mc:Ignorable="d"
-        Title="Bibliotheca Alexandrina" Height="450" Width="800" MinHeight="450" MinWidth="800">
+        Title="Bibliotheca Alexandrina" Height="450" Width="800" MinHeight="450" MinWidth="800" MaxHeight="550" MaxWidth="1000">
    <Grid>
         <TabControl Background="#FFCFFFFC">
             <TabItem Header="Пользователи" Background="#FFCFFFFC">
@@ -44,11 +44,12 @@
                     <ListView Name="Booki"  Grid.Column="1">
                         <ListView.View>
                             <GridView>
+                                <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Title}"/>
                                 <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Path=Author}"/>
                                 <GridViewColumn Header="Артикул" DisplayMemberBinding="{Binding Path=Acr}"/>
                                 <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path=Age}"/>
                                 <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Path=Count}"/>
-                                <GridViewColumn Header="Взята" DisplayMemberBinding="{Binding Path=Count}"/>
+                                <GridViewColumn Header="Взята" DisplayMemberBinding="{Binding Path=vydana}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -62,6 +63,8 @@
                         <TextBox Name="titleTextBox"/>
                         <Label Content="Автор:"/>
                         <TextBox Name="authorTextBox"/>
+                        <Label Content="Артикул:"/>
+                        <TextBox Name="arcTextBox"/>
                         <Label Content="Количество:"/>
                         <TextBox Name="countTextBox"/>
                         <Button Content="Добавить" Background="#FFC7FF7B" Click="AddBookButton_Click"/>
