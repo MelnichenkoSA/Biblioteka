@@ -76,8 +76,15 @@ namespace Biblioteka
             Book selectedBook = Booki.SelectedItem as Book;
             if (selectedUser != null && selectedBook != null)
             {
-                libraryManager.IssueBook(selectedUser, selectedBook);
-                RefreshBookListView();
+                if (selectedBook.Count > 0 ) 
+                {
+                    libraryManager.IssueBook(selectedUser, selectedBook);
+                    RefreshBookListView();
+                }
+                else
+                {
+                    MessageBox.Show("Книги кончились");
+                }
             }
         }
 
