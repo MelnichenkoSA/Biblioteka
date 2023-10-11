@@ -77,6 +77,7 @@ namespace Biblioteka
             if (selectedUser != null && selectedBook != null)
             {
                 libraryManager.IssueBook(selectedUser, selectedBook);
+                RefreshBookListView();
             }
         }
 
@@ -117,6 +118,8 @@ namespace Biblioteka
 
         }
 
+
+
         private void RefreshUserListView()
         {
             userki.Items.Clear();
@@ -145,5 +148,24 @@ namespace Biblioteka
             return nextUserId++;
         }
 
+        private void Filter()
+        {
+            Booki.Items.Clear();
+            foreach (Book book in libraryManager.Books)
+            {
+                if (book.vydana == true)
+                    Booki.Items.Add(book);
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RefreshBookListView();
+        }
     }
 }

@@ -57,7 +57,7 @@
                         <Label Content="Поиск"/>
                         <TextBox Name="bookTitleTextBox"/>
                         <Button Content="Найти" Click="FindBookButton_Click"/>
-                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
+                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
                         <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
                         <Label Content="Название:"/>
                         <TextBox Name="titleTextBox"/>
