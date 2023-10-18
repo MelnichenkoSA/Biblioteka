@@ -14,7 +14,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView Name="userki" Grid.Column="1">
+                    <ListView Name="userki" Grid.Column="1" SelectedItem="{Binding SelectedUsery}" ItemsSource="{Binding Users}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
@@ -25,13 +25,13 @@
                     </ListView>
                     <StackPanel>
                         <Label Content="Поиск"/>
-                        <TextBox Name="userIdTextBox"/>
-                        <Button Content="Найти" Click="FindUserButton_Click"/>
+                        <TextBox Name="userIdTextBox" />
+                        <Button Content="Найти" />
                         <Label Content="Имя:"/>
-                        <TextBox Name="nameTextBox"/>
+                        <TextBox Name="nameTextBox" Text="{Binding selectedName}"/>
                         <Label Content="Фамилия:"/>
-                        <TextBox Name="familyTextBox"/>
-                        <Button Content="Добавить" Background="#FFC7FF7B" Click="AddUserButton_Click"/>
+                        <TextBox Name="familyTextBox" Text="{Binding selectedFamily}"/>
+                        <Button Content="Добавить" Background="#FFC7FF7B" Command="{Binding AddUserCommand}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView Name="Booki"  Grid.Column="1">
+                    <ListView Name="Booki"  Grid.Column="1" SelectedItem="{Binding SelectedBooky}" ItemsSource="{Binding Books}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Title}"/>
@@ -56,19 +56,19 @@
                     <StackPanel>
                         <Label Content="Поиск"/>
                         <TextBox Name="bookTitleTextBox"/>
-                        <Button Content="Найти" Click="FindBookButton_Click"/>
-                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                        <Button Content="Найти" />
+                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
                         <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
                         <Label Content="Название:"/>
-                        <TextBox Name="titleTextBox"/>
+                        <TextBox Name="titleTextBox" Text="{Binding SelectedTitle}"/>
                         <Label Content="Автор:"/>
-                        <TextBox Name="authorTextBox"/>
+                        <TextBox Name="authorTextBox" Text="{Binding SelectedAuthor}"/>
                         <Label Content="Артикул:"/>
-                        <TextBox Name="arcTextBox"/>
+                        <TextBox Name="arcTextBox" Text="{Binding SelectedArc}"/>
                         <Label Content="Количество:"/>
-                        <TextBox Name="countTextBox"/>
-                        <Button Content="Добавить" Background="#FFC7FF7B" Click="AddBookButton_Click"/>
-                        <Button Content="Выдать" Click="IssueBookButton_Click"/>
+                        <TextBox Name="countTextBox" Text="{Binding SelectedCount}"/>
+                        <Button Content="Добавить" Background="#FFC7FF7B" Command="{Binding AddBookCommand}"/>
+                        <Button Content="Выдать" />
                     </StackPanel>
                 </Grid>
             </TabItem>

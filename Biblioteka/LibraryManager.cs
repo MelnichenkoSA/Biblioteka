@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,15 @@ namespace Biblioteka
 {
     internal class LibraryManager
     {
-        private List<User> users = new List<User>();
-        private List<Book> books = new List<Book>();
+        private ObservableCollection<User> users = new ObservableCollection<User>();
+        private ObservableCollection<Book> books = new ObservableCollection<Book>();
 
-        public List<User> Users
+        public ObservableCollection<User> Users
         {
             get { return users; }
         }
 
-        public List<Book> Books
+        public ObservableCollection<Book> Books
         {
             get { return books; }
         }
