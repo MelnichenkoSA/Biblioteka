@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,18 +10,8 @@ namespace Biblioteka
 {
     internal class LibraryManager
     {
-        private ObservableCollection<User> users = new ObservableCollection<User>();
-        private ObservableCollection<Book> books = new ObservableCollection<Book>();
-
-        public ObservableCollection<User> Users
-        {
-            get { return users; }
-        }
-
-        public ObservableCollection<Book> Books
-        {
-            get { return books; }
-        }
+        public ObservableCollection<User> users { get; set; }
+        public ObservableCollection<Book> books { get; set; }
 
         public User FindUser(string userName)
         {

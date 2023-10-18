@@ -14,13 +14,13 @@ namespace Biblioteka
     internal class ViewModel : INotifyPropertyChanged
     {
 
-        public LibraryManager libraryManager;
+        public LibraryManager libraryManager { get; set; }
 
         private User selectedUsery;
-        public ObservableCollection<User> users;
+        public ObservableCollection<User> users { get; set; }
 
         private Book selectedBooky;
-        public ObservableCollection<Book> books;
+        public ObservableCollection<Book> books { get; set; }
 
         private string selectedName;
         private string selectedFamily;
@@ -31,19 +31,18 @@ namespace Biblioteka
         private string selectedBookSearch;
         private string selectedUserSearch;
 
-
         private RelayCommand addUserCommand;
         private RelayCommand addBookCommand;
         private RelayCommand findBookCommand;
         private RelayCommand findUserCommand;
         private RelayCommand issueCommand;
         private RelayCommand checkedFilterCommand;
-        private RelayCommand uncheckedFilterCommand;
+
         public ViewModel()
         {
             LibraryManager libraryManager = new LibraryManager();
-            Users = libraryManager.Users;
-            Books = libraryManager.Books;
+            users = libraryManager.users;
+            books = libraryManager.books;
         }
         public RelayCommand AddUserCommand
         {
@@ -59,7 +58,6 @@ namespace Biblioteka
 
                       libraryManager.AddUser(newUser);
 
-                      RefreshUserListView();
                   }));
             }
         }
@@ -79,7 +77,6 @@ namespace Biblioteka
 
                       libraryManager.AddBook(newBook);
 
-                      RefreshBookListView();
                   }));
             }
         }
@@ -90,7 +87,7 @@ namespace Biblioteka
                 return findBookCommand ??
                   (findBookCommand = new RelayCommand(obj =>
                   {
-                      Books.Clear();
+                      books.Clear();
 
                       string searchText = (SelectedBookSearch);
 
@@ -98,7 +95,7 @@ namespace Biblioteka
 
                       if (foundBook != null)
                       {
-                          Books.Add(foundBook);
+                          books.Add(foundBook);
                       }
                       else
                       {
@@ -114,7 +111,7 @@ namespace Biblioteka
                 return findUserCommand ??
                   (findUserCommand = new RelayCommand(obj =>
                   {
-                      Users.Clear();
+                      users.Clear();
 
                       string searchText = (SelectedUserSearch);
 
@@ -122,7 +119,7 @@ namespace Biblioteka
 
                       if (foundUser != null)
                       {
-                          Users.Add(foundUser);
+                          users.Add(foundUser);
                       }
                       else
                       {
@@ -145,7 +142,6 @@ namespace Biblioteka
                           if (selectedBook.Count > 0)
                           {
                               libraryManager.IssueBook(selectedUser, selectedBook);
-                              RefreshBookListView();
                           }
                           else
                           {
@@ -166,38 +162,8 @@ namespace Biblioteka
                   }));
             }
         }
-        public RelayCommand UncheckedFiterCommand
-        {
-            get
-            {
-                return uncheckedFilterCommand ??
-                  (uncheckedFilterCommand = new RelayCommand(obj =>
-                  {
-                      RefreshBookListView();
-                  }));
-            }
-        }
 
 
-
-        public ObservableCollection<User> Users
-        {
-            get { return users; }
-            set
-            {
-                users = value;
-                OnPropertyChanged("Users");
-            }
-        }
-        public ObservableCollection<Book> Books
-        {
-            get { return books; }
-            set
-            {
-                books = value;
-                OnPropertyChanged("Books");
-            }
-        }
         public User SelectedUsery
         {
             get { return selectedUsery; }
@@ -289,56 +255,20 @@ namespace Biblioteka
             }
         }
 
-
-
-
-
-
-
-
-
-
-
         private int nextUserId = 1;
         private int GetNextUserId()
         {
             return nextUserId++;
         }
-        private void RefreshUserListView()
-        {
-            Users.Clear();
-
-            foreach (User user in libraryManager.Users)
-            {
-                Users.Add(user);
-            }
-
-        }
-        private void RefreshBookListView()
-        {
-            Books.Clear();
-
-            foreach (Book book in libraryManager.Books)
-            {
-                Books.Add(book);
-            }
-        }
         private void Filter()
         {
-            Books.Clear();
-            foreach (Book book in libraryManager.Books)
+            books.Clear();
+            foreach (Book book in libraryManager.books)
             {
                 if (book.vydana == true)
-                    Books.Add(book);
+                    books.Add(book);
             }
         }
-
-
-
-
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
