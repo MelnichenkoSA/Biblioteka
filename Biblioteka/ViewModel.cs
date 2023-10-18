@@ -138,8 +138,8 @@ namespace Biblioteka
                 return issueCommand ??
                   (issueCommand = new RelayCommand(obj =>
                   {
-                      User selectedUser = Users.SelectedItem as User;
-                      Book selectedBook = Books.SelectedItem as Book;
+                      User selectedUser = SelectedUsery as User;
+                      Book selectedBook = SelectedBooky as Book;
                       if (selectedUser != null && selectedBook != null)
                       {
                           if (selectedBook.Count > 0)

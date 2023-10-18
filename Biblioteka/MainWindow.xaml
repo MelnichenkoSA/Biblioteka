@@ -28,9 +28,9 @@
                         <TextBox Name="userIdTextBox" />
                         <Button Content="Найти" />
                         <Label Content="Имя:"/>
-                        <TextBox Name="nameTextBox" Text="{Binding selectedName}"/>
+                        <TextBox Name="nameTextBox" Text="{Binding SelectedName}"/>
                         <Label Content="Фамилия:"/>
-                        <TextBox Name="familyTextBox" Text="{Binding selectedFamily}"/>
+                        <TextBox Name="familyTextBox" Text="{Binding SelectedFamily}"/>
                         <Button Content="Добавить" Background="#FFC7FF7B" Command="{Binding AddUserCommand}"/>
                     </StackPanel>
                 </Grid>

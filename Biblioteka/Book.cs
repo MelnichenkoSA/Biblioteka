@@ -11,12 +11,12 @@ namespace Biblioteka
 {
     internal class Book : INotifyPropertyChanged
     {
-        public string title { get; set; } // Название книги
-        public string author { get; set; } // Автор книги
-        public int acr { get; set; } // Год выпуска книги
-        public int count { get; set; } // Количество экземпляров книги
+        public string title { get; set; } 
+        public string author { get; set; } 
+        public int acr { get; set; } 
+        public int count { get; set; } 
         public DateTime age { get; set; }
-        public User issuedTo { get; set; } // Пользователь, котором
+        public User issuedTo { get; set; } 
         public bool vydana { get; set; }
 
         public string Title
