@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
     internal class User : INotifyPropertyChanged
     {
@@ -48,10 +48,10 @@ namespace Biblioteka
         }
         public User(int id, string name, string family)
         {
-            id = id;
-            name = name;
-            family = family;
-            Books= new List<Book>();
+            this.id = id;
+            this.name = name;
+            this.family = family;
+            Books = new List<Book>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

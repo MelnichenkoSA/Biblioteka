@@ -14,7 +14,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView Name="userki" Grid.Column="1" SelectedItem="{Binding SelectedUsery}" ItemsSource="{Binding Users}">
+                    <ListView Name="userki" Grid.Column="1" SelectedItem="{Binding SelectedUsery}" ItemsSource="{Binding users}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView Name="Booki"  Grid.Column="1" SelectedItem="{Binding SelectedBooky}" ItemsSource="{Binding Books}">
+                    <ListView Name="Booki"  Grid.Column="1" SelectedItem="{Binding SelectedBooky}" ItemsSource="{Binding books}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Title}"/>
@@ -49,7 +49,7 @@
                                 <GridViewColumn Header="Артикул" DisplayMemberBinding="{Binding Path=Acr}"/>
                                 <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path=Age}"/>
                                 <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Path=Count}"/>
-                                <GridViewColumn Header="Взята" DisplayMemberBinding="{Binding Path=vydana}"/>
+                                <GridViewColumn Header="Взята" DisplayMemberBinding="{Binding Path=Vydana}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -57,8 +57,12 @@
                         <Label Content="Поиск"/>
                         <TextBox Name="bookTitleTextBox"/>
                         <Button Content="Найти" />
-                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9"/>
-                        <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9"/>
+                        <!--
+                        <CheckBox Content="Показывать только взятые" Background="#FFF89FF9" Checked="{Binding CheckedFilterCommand}" Unchecked="{Binding UnCheckedFilterCommand}"/>
+                        <CheckBox Content="Показывать только в наличии" Background="#FFF89FF9" />
+                        -->
+                        <Button Content="Filter" Command="{Binding CheckedFilterCommand}"/>
+                        <Button Content="UnFilter" Command="{Binding UnCheckedFilterCommand}"/>
                         <Label Content="Название:"/>
                         <TextBox Name="titleTextBox" Text="{Binding SelectedTitle}"/>
                         <Label Content="Автор:"/>
@@ -68,7 +72,7 @@
                         <Label Content="Количество:"/>
                         <TextBox Name="countTextBox" Text="{Binding SelectedCount}"/>
                         <Button Content="Добавить" Background="#FFC7FF7B" Command="{Binding AddBookCommand}"/>
-                        <Button Content="Выдать" />
+                        <Button Content="Выдать" Command="{Binding IssueCommand}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

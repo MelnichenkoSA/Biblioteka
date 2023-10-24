@@ -25,7 +25,7 @@ namespace Biblioteka
         {
             InitializeComponent();
 
-            DataContext = new ViewModel();
+            DataContext = new ViewModell();
         }
         /*
 

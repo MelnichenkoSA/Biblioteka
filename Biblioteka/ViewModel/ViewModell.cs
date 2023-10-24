@@ -8,19 +8,21 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Biblioteka.Model;
 
 namespace Biblioteka
 {
-    internal class ViewModel : INotifyPropertyChanged
+    internal class ViewModell : INotifyPropertyChanged
     {
-
-        public LibraryManager libraryManager { get; set; }
-
         private User selectedUsery;
         public ObservableCollection<User> users { get; set; }
 
         private Book selectedBooky;
         public ObservableCollection<Book> books { get; set; }
+
+        public ObservableCollection<User> usersback { get; set; }
+
+        public ObservableCollection<Book> booksback { get; set; }
 
         private string selectedName;
         private string selectedFamily;
@@ -37,12 +39,14 @@ namespace Biblioteka
         private RelayCommand findUserCommand;
         private RelayCommand issueCommand;
         private RelayCommand checkedFilterCommand;
+        private RelayCommand uncheckedFilterCommand;
 
-        public ViewModel()
+        public ViewModell()
         {
-            LibraryManager libraryManager = new LibraryManager();
-            users = libraryManager.users;
-            books = libraryManager.books;
+            usersback= new ObservableCollection<User>();
+            booksback= new ObservableCollection<Book>();
+            users = usersback;
+            books = booksback;
         }
         public RelayCommand AddUserCommand
         {
@@ -56,7 +60,7 @@ namespace Biblioteka
 
                       User newUser = new User(GetNextUserId(), name, family);
 
-                      libraryManager.AddUser(newUser);
+                      AddUser(newUser);
 
                   }));
             }
@@ -75,7 +79,7 @@ namespace Biblioteka
 
                       Book newBook = new Book(title, author, count, Acr);
 
-                      libraryManager.AddBook(newBook);
+                      AddBook(newBook);
 
                   }));
             }
@@ -91,7 +95,7 @@ namespace Biblioteka
 
                       string searchText = (SelectedBookSearch);
 
-                      Book foundBook = libraryManager.FindBook(searchText);
+                      Book foundBook = FindBook(searchText);
 
                       if (foundBook != null)
                       {
@@ -115,7 +119,7 @@ namespace Biblioteka
 
                       string searchText = (SelectedUserSearch);
 
-                      User foundUser = libraryManager.FindUser(searchText);
+                      User foundUser = FindUser(searchText);
 
                       if (foundUser != null)
                       {
@@ -141,7 +145,7 @@ namespace Biblioteka
                       {
                           if (selectedBook.Count > 0)
                           {
-                              libraryManager.IssueBook(selectedUser, selectedBook);
+                              IssueBook(selectedUser, selectedBook);
                           }
                           else
                           {
@@ -159,6 +163,18 @@ namespace Biblioteka
                   (checkedFilterCommand = new RelayCommand(obj =>
                   {
                       Filter();
+                  }));
+            }
+        }
+
+        public RelayCommand UnCheckedFilterCommand
+        {
+            get
+            {
+                return uncheckedFilterCommand ??
+                  (uncheckedFilterCommand = new RelayCommand(obj =>
+                  {
+                      Refresher();
                   }));
             }
         }
@@ -263,12 +279,65 @@ namespace Biblioteka
         private void Filter()
         {
             books.Clear();
-            foreach (Book book in libraryManager.books)
+            foreach (Book book in booksback)
             {
                 if (book.vydana == true)
                     books.Add(book);
             }
         }
+        private void Refresher()
+        {
+            books.Clear();
+            foreach (Book book in booksback)
+            {
+                books.Add(book);
+            }
+        }
+
+        /////////////////////////////////////////////////////////////////////
+
+        public User FindUser(string userName)
+        {
+            return usersback.FirstOrDefault(user => user.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public Book FindBook(string bookTitle)
+        {
+            return booksback.FirstOrDefault(book => book.Title.Equals(bookTitle, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public void IssueBook(User user, Book book)
+        {
+            if (user != null && book != null && book.Count > 0 && book.IssuedTo == null)
+            {
+                user.Books.Add(book);
+                book.IssuedTo = user;
+                book.Count--;
+                book.Vydana = true;
+            }
+        }
+
+        public void ReturnBook(User user, Book book)
+        {
+            if (user != null && book != null && user.Books.Contains(book))
+            {
+                user.Books.Remove(book);
+                book.IssuedTo = null;
+                book.Count++;
+            }
+        }
+
+        public void AddUser(User user)
+        {
+            usersback.Add(user);
+        }
+
+        public void AddBook(Book book)
+        {
+            booksback.Add(book);
+        }
+
+        /////////////////////////////////////////////////////////////////////
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

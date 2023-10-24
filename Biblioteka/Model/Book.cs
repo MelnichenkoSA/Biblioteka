@@ -7,24 +7,24 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
     internal class Book : INotifyPropertyChanged
     {
-        public string title { get; set; } 
-        public string author { get; set; } 
-        public int acr { get; set; } 
-        public int count { get; set; } 
+        public string title { get; set; }
+        public string author { get; set; }
+        public int acr { get; set; }
+        public int count { get; set; }
         public DateTime age { get; set; }
-        public User issuedTo { get; set; } 
+        public User issuedTo { get; set; }
         public bool vydana { get; set; }
 
         public string Title
         {
             get { return title; }
 
-            set 
-            { 
+            set
+            {
                 title = value;
                 OnPropertyChanged("Title");
             }
@@ -93,11 +93,11 @@ namespace Biblioteka
         //The message is not supported on this version of Telegram.
         public Book(string title, string author, int count, int acr)
         {
-            title = title;
-            author = author;
-            count = count;
-            acr = acr;
-            vydana= false;
+            this.title = title;
+            this.author = author;
+            this.count = count;
+            this.acr = acr;
+            vydana = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

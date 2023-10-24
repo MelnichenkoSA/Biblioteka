@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Biblioteka
+namespace Biblioteka.Model
 {
     internal class RelayCommand : ICommand
     {
@@ -26,12 +26,12 @@ namespace Biblioteka
 
         public bool CanExecute(object parameter)
         {
-            return this.canExecute == null || this.canExecute(parameter);
+            return canExecute == null || canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+            execute(parameter);
         }
     }
 }
